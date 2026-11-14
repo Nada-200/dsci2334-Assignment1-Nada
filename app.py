@@ -39,10 +39,6 @@ selected_branch = st.sidebar.selectbox("Select Branch", options=branches)
 
 filtered_df = df[df['branch'] == selected_branch]
 
-# 3. Display metric for the selected branch
-total_revenue = filtered_df['total_sar'].sum()
-st.metric(label=f"Total Revenue (SAR) - {selected_branch}", value=f"{total_revenue:,.2f} SAR")
-
 # 4. Display the bar chart of revenue by product
 st.subheader("Revenue by Product")
 st.write("Explore how revenue differs from one product to another.")
