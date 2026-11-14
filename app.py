@@ -33,11 +33,13 @@ else:
     st.warning("No data match these filter.")
 
 # Chart
-plt.figure(figsize=(10, 8))
-x= df['product']
-y = df['total_sar']
-plt.bar(x,y, color = 'pink')
-plt.xlabel("Revenue")
-plt.ylabel("Product")
-plt.show()
-
+st.subheader('Revenue by Product')
+if len(view) > 0:
+    product_revenue = view.groupby('product')['total_sar'].sum()
+    fig, ax =plt.subplots(figsize=(8, 5))
+    ax.bar(product_revenue.index,product_revenue.values, color = 'pink')
+    ax.xlabel("Product")
+    ax.ylabel("Revenue")
+    ax.set_title(f"Revenue by Product ({branch}Branch)")
+    plt.xticks(rotation = 45, ha = 'right')
+    st.pyplot(fig)
