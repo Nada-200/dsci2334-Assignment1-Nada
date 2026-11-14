@@ -21,7 +21,7 @@ st.sidebar.header("Filters")
 branch = st.sidebar.selectbox("Branch", ["All","Al Malqa", "Al Nakheel", "Diriyah", "Olaya"])
 
 view = df[df["total_sar"] > 0]
-if research != "All":
+if branch != "All":
     view = view[view["Branch"] == (1 if branch == "Yes" else 0)]
 
 # Key numbers
