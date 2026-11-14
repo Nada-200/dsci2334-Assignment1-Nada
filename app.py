@@ -33,6 +33,7 @@ else:
     st.warning("No data match these filter.")
 
 # Chart
+plt.figure(figsize=(10, 8))
 x= df['product']
 y = df['total_sar']
 plt.bar(x,y, color = 'pink')
