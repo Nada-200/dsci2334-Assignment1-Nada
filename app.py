@@ -36,7 +36,7 @@ else:
 # Chart
 st.subheader("Revenue by Product")
 st.write("Explore how revenue differs from one product to another.")
-
+filtered_df = df[df['branch'] == selected_branch]
 fig, ax = plt.subplots()
 product_revenue = filtered_df.groupby('product')['total_sar'].sum()
 ax.bar(product_revenue.index, product_revenue.values, color='pink')
