@@ -34,6 +34,7 @@ else:
     st.warning("No branch match these filters.")
 
 # Chart
+filtered_df = df[df['branch'] == selected_branch]
 st.subheader("Revenue by Product")
 fig, ax = plt.subplots()
 product_revenue = filtered_df.groupby('product')['total_sar'].sum()
