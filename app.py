@@ -35,7 +35,7 @@ else:
 
 # Chart
 fig1, ax1 = plt.subplots()
-ax1.bar(product, total_sar, color = 'pink')
+ax1.bar(total_sar,product, color = 'pink')
 ax1.set_xlabel("Revenue")
 ax1.set_ylabel("Product")
 st.pyplot(fig1)
