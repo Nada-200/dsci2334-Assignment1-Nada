@@ -34,12 +34,6 @@ else:
     st.warning("No branch match these filters.")
 
 # Chart
-branches = df['branch'].unique()
-selected_branch = st.sidebar.selectbox("Select Branch", options=branches)
-
-filtered_df = df[df['branch'] == selected_branch]
-
-# 4. Display the bar chart of revenue by product
 st.subheader("Revenue by Product")
 st.write("Explore how revenue differs from one product to another.")
 
@@ -51,7 +45,6 @@ ax.set_ylabel("Total Revenue (SAR)")
 ax.set_title("Revenue by Product")
 plt.xticks(rotation=45, ha='right')
 st.pyplot(fig)
-Save this file, commit/push it to your GitHub repository, and your Streamlit app will load successfully without errors!
 
 # Data table
 st.subheader("First 20 matching students")
