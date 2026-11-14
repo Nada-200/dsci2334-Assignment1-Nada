@@ -34,17 +34,11 @@ else:
     st.warning("No branch match these filters.")
 
 # Chart
-st.subheader("Revenue by Product")
-st.write("Explore how revenue differs from one product to another.")
-filtered_df = df[df['branch'] == selected_branch]
-fig, ax = plt.subplots()
-product_revenue = filtered_df.groupby('product')['total_sar'].sum()
-ax.bar(product_revenue.index, product_revenue.values, color='pink')
-ax.set_xlabel("Product")
-ax.set_ylabel("Total Revenue (SAR)")
-ax.set_title("Revenue by Product")
-plt.xticks(rotation=45, ha='right')
-st.pyplot(fig)
+fig2, ax2 = plt.subplots()
+ax2.hist(view["total_sar"], bins=15)
+ax2.set_xlabel("total_sar")
+ax2.set_ylabel("Number of students")
+st.pyplot(fig2)
 
 # Data table
 st.subheader("First 20 matching students")
