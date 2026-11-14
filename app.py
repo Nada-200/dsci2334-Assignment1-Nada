@@ -37,7 +37,7 @@ st.subheader('Revenue by Product')
 if len(view) > 0:
     product_revenue = view.groupby('product')['total_sar'].sum()
     fig, ax =plt.subplots(figsize=(8, 5))
-    ax.bar(product_revenue.index,product_revenue.values, color = 'pink')
+    ax.bar(product_revenue.index,product_revenue.values, color = 'brown')
     ax.set_xlabel("Product")
     ax.set_ylabel("Revenue")
     ax.set_title(f"Revenue by Product ({branch}Branch)")
