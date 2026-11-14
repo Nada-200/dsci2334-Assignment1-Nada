@@ -18,27 +18,29 @@ df = load_data()
 
 # Sidebar filters
 st.sidebar.header("Filters")
-branch = st.sidebar.selectbox("Branch", ["Al Malqa", "Al Nakheel", "Diriyah", "Olaya"])
+branch = st.sidebar.selectbox("Branch", ["All","Al Malqa", "Al Nakheel", "Diriyah", "Olaya"])
 
-view = df[df["CGPA"] >= min_cgpa]
+view = df[df["total_sar"] > 0]
 if research != "All":
-    view = view[view["Research"] == (1 if research == "Yes" else 0)]
+    view = view[view["Branch"] == (1 if branch == "Yes" else 0)]
 
 # Key numbers
-c1, c2, c3 = st.columns(3)
-c1.metric("Students", len(view))
+c1, c2, c3= st.columns(3)
+c1.metric("Product", len(view))
 if len(view) > 0:
-    c2.metric("Average CGPA", f"{view['CGPA'].mean():.2f}")
-    c3.metric("Average chance", f"{view['Chance of Admit'].mean():.0%}")
+    c2.metric("Average revenue", f"{view['total_sar'].mean():.2f}")
+    c3.metric("Total revenue", f"{view['total_sar'].sum():.2f}")
 else:
-    st.warning("No students match these filters. Lower the minimum CGPA.")
+    st.warning("No branch match these filters.")
 
 # Chart
 fig, ax = plt.subplots()
-ax.scatter(view["GRE Score"], view["Chance of Admit"], alpha=0.6)
-ax.set_xlabel("GRE Score")
-ax.set_ylabel("Chance of Admit")
-ax.set_title("GRE Score vs Chance of Admit")
+product_revenue = filtered_df.groupby('product')['total_sar'].sum()
+ax.bar(product_revenue.index, product_revenue.values, color='pink')
+ax.set_xlabel("Product")
+ax.set_ylabel("Total Revenue (SAR)")
+ax.set_title("Revenue by Product")
+plt.xticks(rotation=45, ha='right')
 st.pyplot(fig)
 
 # Data table
