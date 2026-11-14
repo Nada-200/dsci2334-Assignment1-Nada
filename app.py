@@ -34,11 +34,13 @@ else:
     st.warning("No branch match these filters.")
 
 # Chart
-fig1, ax1 = plt.subplots()
-ax1.bar(total_sar,product, color = 'pink')
-ax1.set_xlabel("Revenue")
-ax1.set_ylabel("Product")
-st.pyplot(fig1)
+x= df['product']
+y = df['total_sar']
+ax1 , ax2= plt.subplots()
+plt.bar(x,y, color = 'pink')
+plt.xlabel("Revenue")
+plt.ylabel("Product")
+plt.show()
 
 # Data table
 st.subheader("First 20 matching students")
