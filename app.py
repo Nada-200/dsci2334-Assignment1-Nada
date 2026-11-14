@@ -26,7 +26,7 @@ if branch != "All":
 
 # Key numbers
 c1, c2, c3= st.columns(3)
-c1.metric("Product", len(view))
+c1.metric("product", len(view))
 if len(view) > 0:
     c2.metric("Average revenue", f"{view['total_sar'].mean():.2f}")
     c3.metric("Total revenue", f"{view['total_sar'].sum():.2f}")
