@@ -33,13 +33,19 @@ else:
     st.warning("No data match these filter.")
 
 # Chart
-st.subheader('Revenue by Product')
+st.subheader('Monthly Revenue')
 if len(view) > 0:
-    product_revenue = view.groupby('product')['total_sar'].sum()
-    fig, ax =plt.subplots(figsize=(8, 5))
-    ax.bar(product_revenue.index,product_revenue.values, color = 'brown')
-    ax.set_xlabel("Product")
-    ax.set_ylabel("Revenue")
-    ax.set_title(f"Revenue by Product ({branch}Branch)")
-    plt.xticks(rotation = 45, ha = 'right')
+    # Ensure the date column is datetime type
+    view['date'] = pd.to_datetime(view['date'])
+    
+    # Extract year-month (e.g., '2026-01') and group by month
+    view['month'] = view['date'].dt.to_period('M').astype(str)
+    monthly_revenue = view.groupby('month')['total_sar'].sum()
+    
+    fig, ax = plt.subplots(figsize=(8, 5))
+    ax.bar(monthly_revenue.index, monthly_revenue.values, color='brown')
+    ax.set_xlabel("Month")
+    ax.set_ylabel("Revenue (SAR)")
+    ax.set_title(f"Monthly Revenue ({branch} Branch)")
+    plt.xticks(rotation=45, ha='right')
     st.pyplot(fig)
