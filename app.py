@@ -35,10 +35,8 @@ else:
 # Chart
 st.subheader('Monthly Revenue')
 if len(view) > 0:
-    # Ensure the date column is datetime type
     view['date'] = pd.to_datetime(view['date'])
     
-    # Extract year-month (e.g., '2026-01') and group by month
     view['month'] = view['date'].dt.to_period('M').astype(str)
     monthly_revenue = view.groupby('month')['total_sar'].sum()
     
